@@ -8,11 +8,11 @@
     </div>
   </div>
   <div class="columns is-desktop">
-    <div class="column is-6 is-offset-0">
+    <div class="column is-5 is-offset-1">
       sdfsdf
       <content :toggleshow = "toggleShow" :show = "show" :showplay = "showPlay" :list = "list" :select = "select" :video = "VideoId" :end = "end" :pl = "addPlayList" :showplaylist = "showPlaylist" :showpl = "showpl" :end = "end"></content>
     </div>
-    <div class="column is-6 is-offset-0">
+    <div class="column is-5 is-offset-0">
       <play-list :toggleshowplay = "toggleShowPlay" :select = "select" :toggleshow = "toggleShow" :playlist = "playLists" :deleteplaylist = "deletePlayList"></play-list>
     </div>
   </div>

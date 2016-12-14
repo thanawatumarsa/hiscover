@@ -1,5 +1,5 @@
 <template lang="html">
-  <select>
+  <select >
   <option @click="cateSearch(' cover')">Cover</option>
   <option @click="cateSearch(' guitar')">Guitar</option>
   <option @click="cateSearch(' drum')">Drum</option>
