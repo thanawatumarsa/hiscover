@@ -1,12 +1,9 @@
 <template lang="html">
-  <div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-  <div id="myDropdown" class="dropdown-content">
-    <a @click="cateSearch(' cover')">Cover</a>
-    <a @click="cateSearch(' guitar')">Guitar</a>
-    <a @click="cateSearch(' drum')">Drum</a>
-  </div>
-</div>
+  <select>
+  <option @click="cateSearch(' cover')">Cover</option>
+  <option @click="cateSearch(' guitar')">Guitar</option>
+  <option @click="cateSearch(' drum')">Drum</option>
+</select>
 </template>
 
 <script>

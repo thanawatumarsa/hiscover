@@ -5,7 +5,7 @@
   </div><hr>
   <div class="play" v-if="playlist.length === 0">
     <div class="text">
-      Your playist is empty
+      Your playlist is empty
     </div>
   </div>
   <div v-for="play in playlist">
