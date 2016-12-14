@@ -58,7 +58,7 @@ export default {
     },
     search (keyword) {
       let vm = this
-      this.$http.get('http://localhost:3000/search?keyword=' + keyword + ' cover').then(function (res) {
+      this.$http.get('/search?keyword=' + keyword + ' cover').then(function (res) {
         // console.log(JSON.parse(res.body))
         vm.list = JSON.parse(res.body).items
         this.keyTemp = keyword
@@ -74,7 +74,7 @@ export default {
     },
     cateSearch (keysearch) {
       let vm = this
-      this.$http.get('http://localhost:3000/search?keyword=' + this.keyTemp + keysearch).then(function (res) {
+      this.$http.get('/search?keyword=' + this.keyTemp + keysearch).then(function (res) {
         vm.list = JSON.parse(res.body).items
         this.show = true
       })
