@@ -1,9 +1,14 @@
 <template lang="html">
-  <select >
-  <option @click="cateSearch(' cover')">Cover</option>
-  <option @click="cateSearch(' guitar')">Guitar</option>
-  <option @click="cateSearch(' drum')">Drum</option>
-</select>
+    <div id="boxmenu">
+  <div id="textmenu">
+    Categories
+  </div><hr>
+  <div id="menu">
+    <button class="button" @click="cateSearch(' cover')">Cover</button>
+    <button class="button" @click="cateSearch(' guitar')">Guitar</button>
+    <button class="button" @click="cateSearch(' drum')">Drum</button>
+  </div>
+</div>
 </template>
 
 <script>

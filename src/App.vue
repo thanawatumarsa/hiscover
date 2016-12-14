@@ -4,23 +4,22 @@
   <link href="https://fonts.googleapis.com/css?family=Athiti|Oxygen" rel="stylesheet">
   <div class="top">
     <div id="header">
-      <tool-bar :search = "search" :cate-search = "cateSearch"></tool-bar>
+      <tool-bar :search = "search"></tool-bar>
     </div>
   </div>
   <div class="columns is-desktop">
-    <div class="column is-7 is-offset-0">
-      <div class="content">
-      <div class="video-container"  v-if="!showPlay">
-        <youtube :video-id="VideoId" player-width="560" align="center" @ended="end()" :player-vars="{autoplay: 1}"></youtube>
-      </div>
+    <div class="column is-2 is-offset-1">
+      <menu :cate-search = "cateSearch"></menu>
     </div>
+    <div class="column is-6 is-offset-0">
+      <content :toggleshow = "toggleShow" :show = "show" :showplay = "showPlay" :list = "list" :select = "select" :video = "VideoId" :end = "end" :pl = "addPlayList" :showplaylist = "showPlaylist" :showpl = "showpl" :end = "end"></content>
+    </div>
+    <div class="column is-2 is-offset-0">
       <play-list :toggleshowplay = "toggleShowPlay" :select = "select" :toggleshow = "toggleShow" :playlist = "playLists" :deleteplaylist = "deletePlayList"></play-list>
-    </div>
-    <div class="column is-5 is-offset-0">
-      <content :toggleshow = "toggleShow" :show = "show" :list = "list" :select = "select" :pl = "addPlayList" :showplaylist = "showPlaylist" :showpl = "showpl" :end = "end"></content>
     </div>
   </div>
 </template>
+
 
 <script>
 import Vue from 'vue'
@@ -165,8 +164,50 @@ body {
   width: 100%;
   height: 100%;
   margin-top: 10px;
-  padding-bottom: 20px;
+  padding-bottom: 0px;
   border-radius: 3px;
+}
+
+#menu {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.button {
+  background-color: #F2F2F2;
+  padding: 0px 30px;
+  text-align: left;
+  width: 100%;
+  height: 50px;
+  border: 0;
+  font-size: 20px;
+  transition: all 0.2s ease 0s;
+  font-family: 'Athiti', 'Oxygen';
+}
+
+.button:hover {
+    background-color: #404040;
+}
+
+@media screen and (max-width: 980px) {
+  #boxmenu {
+    height: 50%;
+  }
+
+  #textmenu {
+    padding: 3px 35px;
+    font-size: 15px;
+  }
+
+  #menu {
+    width: 100%;
+    margin-top: 0px;
+  }
+
+  .button {
+    height: 30px;
+    font-size: 15px;
+  }
 }
 
 /*@media screen and (max-width: 980px) {
@@ -175,10 +216,7 @@ body {
     }
 }*/
 
-#menu {
-  width: 100%;
-  margin-top: 10px;
-}
+
 
 #video {
   margin-bottom: 30px;
@@ -226,23 +264,6 @@ input[type=text]{
   border-radius: 25px;
 }
 
-.button {
-  background-color: #F2F2F2;
-  padding: 0px 30px;
-  margin-bottom: 2px;
-  text-align: left;
-  width: 100%;
-  height: 50px;
-  border: 0;
-  font-size: 20px;
-  transition: all 0.2s ease 0s;
-  font-family: 'Athiti', 'Oxygen';
-}
-
-.button:hover {
-    background-color: #404040;
-}
-
 .video-container {
   position: relative;
   padding-bottom: 56.25%;
@@ -255,8 +276,8 @@ input[type=text]{
   margin-left: -5%;
 	top:0;
 	left:5%;
-	width:80%;
-	height:80%;
+	width:100%;
+	height:100%;
 }
 
 .card {
@@ -343,26 +364,94 @@ input[type=text]{
 }
 
 .nameLink {
-  width: 60%;
+  width: 50%;
+  height: 100%;
   max-height: 30px;
   font-size: 100%;
-  margin-top: 15px;
+  margin-top: 30px;
   margin-right: 5px;
+  margin-left: 25px;
   margin-bottom: 15px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: '...?';
+  word-wrap:break-word;
+  display: inline-block;
+}
+
+@media screen and (max-width: 1500px) {
+  .nameLink {
+    font-size: 100%;
+    margin-top: 15px;
+    margin-left: 5px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .nameLink {
+    font-size: 50%;
+    margin-top: -10px;
+    margin-left: 5px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .nameLink {
+    font-size: 70%;
+    margin-top: -10px;
+    margin-left: 5px;
+  }
+}
+
+@media screen and (max-width: 401px) {
+  .nameLink {
+    font-size: 60%;
+    margin-top: -10px;
+    margin-left: 5px;
+  }
 }
 
 .namePL {
   width: 50%;
   height: 50px;
-  font-size: 90%;
-  margin-top: 15px;
+  font-size: 70%;
+  margin-top: 10px;
+  margin-left: 5px;
   margin-right: 5px;
   margin-bottom: 15px;
+  word-wrap:break-word;
   overflow: hidden;
   text-overflow: '...?';
+  z-index: -1;
+}
+
+@media screen and (max-width: 1500px) {
+  .namePL {
+    font-size: 85%;
+    margin-top: 15px;
+    margin-left: 5px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .namePL {
+    font-size: 50%;
+    margin-top: -10px;
+    margin-left: 5px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .namePL {
+    font-size: 70%;
+    margin-top: -10px;
+    margin-left: 5px;
+  }
+}
+
+@media screen and (max-width: 401px) {
+  .namePL {
+    font-size: 60%;
+    margin-top: -10px;
+    margin-left: 5px;
+  }
 }
 
 .del {
@@ -383,12 +472,20 @@ input[type=text]{
 }
 
 .addPlaylist {
-  width: 60%;
+  width: 50px;
   height: 50px;
-
+  top: 60px;
+  margin-right: 10px;
   float: right;
+  position: relative;
 }
 
+@media screen and (max-width: 500px) {
+  .addPlaylist {
+    margin-top: -20px;
+    margin-left: 10px;
+  }
+}
 .playButt {
   font-family: 'Athiti', 'Oxygen';
   font-size: 20px;
@@ -412,17 +509,26 @@ input[type=text]{
   font-size: 25px;
   display: inline-block;
   color: white;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 50px;
+  width: 100%;
+  height: 100%;
+  margin-top:5px;
+  margin-right: 5px;
+  border-radius: 5%;
   background-color: #58D3F7;
   float: right;
   border: 0;
   margin-top: 4%;
   margin-left: 10%;
   transition: all 0.2s ease 0s;
-  box-shadow: 2px 2px 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .addButt {
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+    float: right;
+  }
 }
 
 .addButt:hover {
@@ -439,50 +545,6 @@ input[type=text]{
   font-family: 'Athiti', 'Oxygen';
   font-size: 18px;
 }
-
-/* Dropdown Button */
-.dropbtn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
-
-/* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #3e8e41;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;}
 
 ::-webkit-scrollbar {
   width: 5px;
