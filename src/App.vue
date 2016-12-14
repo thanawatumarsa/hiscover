@@ -20,6 +20,7 @@
   </div>
 </template>
 
+
 <script>
 import Vue from 'vue'
 import VueYouTubeEmbed from 'vue-youtube-embed'
