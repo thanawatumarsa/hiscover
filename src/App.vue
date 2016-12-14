@@ -9,6 +9,7 @@
   </div>
   <div class="columns is-desktop">
     <div class="column is-6 is-offset-0">
+      sdfsdf
       <content :toggleshow = "toggleShow" :show = "show" :showplay = "showPlay" :list = "list" :select = "select" :video = "VideoId" :end = "end" :pl = "addPlayList" :showplaylist = "showPlaylist" :showpl = "showpl" :end = "end"></content>
     </div>
     <div class="column is-2 is-offset-0">
