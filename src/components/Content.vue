@@ -8,7 +8,7 @@
 import SearchResult from '../components/SearchResult'
 
 export default {
-  props: ['end', 'list', 'select', 'show', 'pl', 'showplaylist', 'showpl'],
+  props: ['list', 'select', 'show', 'pl', 'showplaylist', 'showpl'],
   data () {
     return {
     }
