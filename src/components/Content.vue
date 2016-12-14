@@ -11,7 +11,7 @@
 import SearchResult from '../components/SearchResult'
 
 export default {
-  props: ['video', 'end', 'list', 'select', 'show', 'pl', 'showplaylist', 'showpl', 'showplay'],
+  props: ['end', 'list', 'select', 'show', 'pl', 'showplaylist', 'showpl'],
   data () {
     return {
     }
