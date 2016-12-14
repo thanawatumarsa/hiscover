@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="columns is-desktop">
-    <div class="column is-6 is-offset-1">
+    <div class="column is-7 is-offset-0">
       <div class="content">
       <div class="video-container"  v-if="!showPlay">
         <youtube :video-id="VideoId" player-width="560" align="center" @ended="end()" :player-vars="{autoplay: 1}"></youtube>
@@ -16,7 +16,7 @@
     </div>
       <play-list :toggleshowplay = "toggleShowPlay" :select = "select" :toggleshow = "toggleShow" :playlist = "playLists" :deleteplaylist = "deletePlayList"></play-list>
     </div>
-    <div class="column is-4 is-offset-0">
+    <div class="column is-5 is-offset-0">
       <content :toggleshow = "toggleShow" :show = "show" :list = "list" :select = "select" :pl = "addPlayList" :showplaylist = "showPlaylist" :showpl = "showpl" :end = "end"></content>
     </div>
   </div>
