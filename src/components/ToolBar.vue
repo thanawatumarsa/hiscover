@@ -11,10 +11,10 @@ export default {
   data () {
     return {
       keyword: ''
-    },
-    components {
-      Menu
     }
+  },
+  components: {
+    Menu
   }
 }
 </script>
