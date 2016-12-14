@@ -4,13 +4,10 @@
   <link href="https://fonts.googleapis.com/css?family=Athiti|Oxygen" rel="stylesheet">
   <div class="top">
     <div id="header">
-      <tool-bar :search = "search"></tool-bar>
+      <tool-bar :search = "search" :cate-search = "cateSearch"></tool-bar>
     </div>
   </div>
   <div class="columns is-desktop">
-    <div class="column is-2 is-offset-1">
-      <menu :cate-search = "cateSearch"></menu>
-    </div>
     <div class="column is-6 is-offset-0">
       <content :toggleshow = "toggleShow" :show = "show" :showplay = "showPlay" :list = "list" :select = "select" :video = "VideoId" :end = "end" :pl = "addPlayList" :showplaylist = "showPlaylist" :showpl = "showpl" :end = "end"></content>
     </div>
@@ -19,7 +16,6 @@
     </div>
   </div>
 </template>
-
 
 <script>
 import Vue from 'vue'
@@ -438,6 +434,50 @@ input[type=text]{
   font-family: 'Athiti', 'Oxygen';
   font-size: 18px;
 }
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #3e8e41;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
 
 ::-webkit-scrollbar {
   width: 5px;

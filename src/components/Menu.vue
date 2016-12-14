@@ -1,12 +1,10 @@
 <template lang="html">
-    <div id="boxmenu">
-  <div id="textmenu">
-    Categories
-  </div><hr>
-  <div id="menu">
-    <button class="button" @click="cateSearch(' cover')">Cover</button>
-    <button class="button" @click="cateSearch(' guitar')">Guitar</button>
-    <button class="button" @click="cateSearch(' drum')">Drum</button>
+  <div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+  <div id="myDropdown" class="dropdown-content">
+    <a @click="cateSearch(' cover')">Cover</a>
+    <a @click="cateSearch(' guitar')">Guitar</a>
+    <a @click="cateSearch(' drum')">Drum</a>
   </div>
 </div>
 </template>
