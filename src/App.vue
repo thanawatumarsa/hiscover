@@ -10,7 +10,7 @@
   <div class="columns is-desktop">
     <div class="column is-5 is-offset-1">
       <div class="video-container"  v-if="!showPlay">
-        <youtube :video-id="VideoID" player-width="560" align="center" @ended="end()" :player-vars="{autoplay: 1}"></youtube>
+        <youtube :video-id="VideoId" player-width="560" align="center" @ended="end()" :player-vars="{autoplay: 1}"></youtube>
       </div>
       <play-list :toggleshowplay = "toggleShowPlay" :select = "select" :toggleshow = "toggleShow" :playlist = "playLists" :deleteplaylist = "deletePlayList"></play-list>
     </div>
