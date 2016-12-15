@@ -63,7 +63,7 @@ export default {
       let vm = this
       var maxlist = vm.list.length
       vm.list.splice(0, maxlist)
-      this.$http.get('http://localhost:3000/search?keyword=' + keyword + ' cover').then(function (res) {
+      this.$http.get('/search?keyword=' + keyword + ' cover').then(function (res) {
         vm.checkLists = JSON.parse(res.body).items
         this.keyTemp = keyword
         this.show = true
@@ -80,7 +80,7 @@ export default {
     },
     cateSearch (keysearch) {
       let vm = this
-      this.$http.get('http://localhost:3000/search?keyword=' + this.keyTemp + keysearch).then(function (res) {
+      this.$http.get('/search?keyword=' + this.keyTemp + keysearch).then(function (res) {
         vm.list = JSON.parse(res.body).items
         this.show = true
       })
