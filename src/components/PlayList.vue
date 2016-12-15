@@ -1,8 +1,8 @@
 <template lang="html">
-  <div class="playList">
   <div id="textmenu">
     Your Playlist
   </div><hr>
+  <div class="playList">
   <div class="play" v-if="playlist.length === 0">
     <div class="text">
       Your playlist is empty

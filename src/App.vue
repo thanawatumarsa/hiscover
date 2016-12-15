@@ -12,7 +12,7 @@
       <menu :cate-search = "cateSearch"></menu>
     </div>
     <div class="column is-6 is-offset-0">
-      <content :toggleshow = "toggleShow" :show = "show" :showplay = "showPlay" :list = "list" :select = "select" :video = "VideoId" :end = "end" :pl = "addPlayList" :showplaylist = "showPlaylist" :showpl = "showpl" :end = "end"></content>
+      <content :toggleshow = "toggleShow" :show = "show" :showplay = "showPlay" :list = "list" :playlist = "playLists" :select = "select" :video = "VideoId" :end = "end" :pl = "addPlayList" :showplaylist = "showPlaylist" :showpl = "showpl" :end = "end"></content>
     </div>
     <div class="column is-2 is-offset-0">
       <play-list :toggleshowplay = "toggleShowPlay" :select = "select" :toggleshow = "toggleShow" :playlist = "playLists" :deleteplaylist = "deletePlayList"></play-list>
@@ -41,7 +41,8 @@ export default {
       defaultPL: 'cover',
       keyTemp: '',
       showPlay: true,
-      showPlaylist: []
+      showPlaylist: [],
+      chkSelect: 0
     }
   },
   ready () {
@@ -92,10 +93,15 @@ export default {
       for (var i = 0; i < vm.playLists.length; i++) {
         if (vm.playLists[i].id.videoId === source) {
           this.deletePlayList(i)
+          vm.playLists.splice(0, 0, Vid)
+          this.chkSelect = 1
         }
       }
-      vm.playLists.splice(0, 0, Vid)
+      if (this.chkSelect !== 1) {
+        vm.playLists.splice(0, 1, Vid)
+      }
       this.showPlay = false
+      this.chkSelect = 0
     },
     selectPlaylist (id) {
       let source = id
@@ -161,9 +167,49 @@ body {
 }
 
 #textmenu {
-  padding: 20px 35px;
+  padding: 0px 35px;
   font-size: 25px;
+  margin-top: 20px;
 }
+
+.textContent {
+  padding: 0px 20px;
+  font-size: 25px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 1500px) {
+  .textContent {
+    font-size: 100%;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .textContent {
+    font-size: 100%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .textContent {
+    font-size: 50%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .textContent {
+    font-size: 70%;
+  }
+}
+
+@media screen and (max-width: 401px) {
+  .textContent {
+    font-size: 100%;
+    margin-bottom: 20px;
+  }
+}
+
 
 #boxmenu {
   width: 100%;
@@ -283,8 +329,6 @@ input[type=text]{
 .video-container {
   position: relative;
   padding-bottom: 56.25%;
-  padding-top: 25px;
-  margin-bottom: 43px;
 }
 
 .video-container iframe {
@@ -302,6 +346,16 @@ input[type=text]{
   margin-bottom: 5px;
   background-color: #ffffff;
   overflow: hidden;
+  transition: all 0.2s ease 0s;
+  border: 1.2px solid #E6E6E6;
+}
+
+.cardContent {
+  width: 99.5%;
+  height: 100%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: #ffffff;
   transition: all 0.2s ease 0s;
   border: 1.2px solid #E6E6E6;
 }
