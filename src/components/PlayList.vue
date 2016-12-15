@@ -10,7 +10,7 @@
   </div>
   <div v-for="play in playlist">
     <lists-play-list :playlist = "playlist" :deleteplaylist = 'deleteplaylist' :index ="$index" :select = "select"></lists-play-list>
-  </div>
+</div>
 </div>
 </template>
 

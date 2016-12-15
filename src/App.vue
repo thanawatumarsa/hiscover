@@ -216,8 +216,6 @@ body {
     }
 }*/
 
-
-
 #video {
   margin-bottom: 30px;
   width: 100%;
@@ -235,6 +233,13 @@ body {
   border-radius: 3px;
 }
 
+@media screen and (max-width: 980px) {
+  .playList {
+    height: 50vh;
+  }
+}
+
+
 .content {
   background-color: #F2F2F2;
   margin-top: 10px;
@@ -250,6 +255,12 @@ body {
   overflow-y:scroll;
   align-items: center;
   padding-right:0px;
+}
+
+@media screen and (max-width: 980px) {
+  #playlists {
+    height: 30vh;
+  }
 }
 
 input[type=text]{
@@ -355,7 +366,7 @@ input[type=text]{
 .imgPL {
   float: left;
   padding-bottom: -6px;
-  width: 40%;
+  width: 30%;
   height: 13.4vh auto;
   margin-top: 15px;
   margin-left: 15px;
@@ -380,6 +391,14 @@ input[type=text]{
   .nameLink {
     font-size: 100%;
     margin-top: 15px;
+    margin-left: 5px;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .nameLink {
+    font-size: 100%;
+    margin-top: 10px;
     margin-left: 5px;
   }
 }
@@ -424,8 +443,16 @@ input[type=text]{
 
 @media screen and (max-width: 1500px) {
   .namePL {
-    font-size: 85%;
-    margin-top: 15px;
+    font-size: 70%;
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .namePL {
+    font-size: 100%;
+    margin-top: 10px;
     margin-left: 5px;
   }
 }
@@ -441,7 +468,7 @@ input[type=text]{
 @media screen and (max-width: 450px) {
   .namePL {
     font-size: 70%;
-    margin-top: -10px;
+    margin-top: 20px;
     margin-left: 5px;
   }
 }
@@ -449,7 +476,7 @@ input[type=text]{
 @media screen and (max-width: 401px) {
   .namePL {
     font-size: 60%;
-    margin-top: -10px;
+    margin-top: 20px;
     margin-left: 5px;
   }
 }
