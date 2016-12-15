@@ -33,6 +33,8 @@ import PlayList from './components/PlayList'
 export default {
   data () {
     return {
+      checkLists: [],
+      pushList: [],
       list: [],
       playLists: [],
       VideoId: '',
@@ -59,23 +61,26 @@ export default {
     },
     search (keyword) {
       let vm = this
-      this.$http.get('/search?keyword=' + keyword + ' cover').then(function (res) {
-        // console.log(JSON.parse(res.body))
-        vm.list = JSON.parse(res.body).items
+      var maxlist = vm.list.length
+      vm.list.splice(0, maxlist)
+      this.$http.get('http://localhost:3000/search?keyword=' + keyword + ' cover').then(function (res) {
+        vm.checkLists = JSON.parse(res.body).items
         this.keyTemp = keyword
         this.show = true
-        for (var i = 0; i < vm.list.length; i++) {
-          var playlistCheck = {
-            id: i,
-            show: false
+        for (var i = 0; i < vm.checkLists.length; i++) {
+          if (vm.checkLists[i].id.kind === 'youtube#video') {
+            this.pushList = vm.checkLists[i]
+            this.list.push(this.pushList)
           }
-          this.showPlaylist.push(playlistCheck)
         }
       })
+      var maxChkLists = vm.checkLists.length
+      vm.checkLists.splice(0, maxChkLists)
+      console.log(this.list)
     },
     cateSearch (keysearch) {
       let vm = this
-      this.$http.get('/search?keyword=' + this.keyTemp + keysearch).then(function (res) {
+      this.$http.get('http://localhost:3000/search?keyword=' + this.keyTemp + keysearch).then(function (res) {
         vm.list = JSON.parse(res.body).items
         this.show = true
       })
