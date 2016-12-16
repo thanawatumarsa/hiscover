@@ -24,8 +24,9 @@
         </div>
       </div>
       <div class="changePositionPL">
-        <button type="button" class = "changeUp" v-bind:disabled="index === 0" @click="changeplaylistup(playlist[index], index)" name="button">▲</button><br>
-        <button type="button" class = "changeDown" v-bind:disabled="index === playlist.length - 1" @click="changeplaylistdown(playlist[index], index)" name="button">▼</button>
+        <button type="button" class = "changeUp" v-if="index !== 0" @click="changeplaylistup(playlist[index], index)" name="button">▲</button><br>
+        <button type="button" class = "changeDown" v-if="index !== playlist.length - 1 && index !== 0 " @click="changeplaylistdown(playlist[index], index)" name="button">▼</button>
+        <button type="button" class = "changeDownFirst" v-if="index === 0" @click="changeplaylistdown(playlist[index], index)" name="button">▼</button>
       </div>
     </div>
   </div>

@@ -666,6 +666,95 @@ input[type=text]{
     background-color: #00ace6;
 }
 
+.changeDownFirst {
+  font-family: 'Athiti', 'Oxygen';
+  font-size: 12px;
+  display: inline-block;
+  color: white;
+  width: 25px;
+  height: 40px;
+  margin-right: 5px;
+  border-radius: 5%;
+  background-color: #58D3F7;
+  float: right;
+  border: 0;
+  margin-top: 17px;
+  margin-left: 10%;
+  transition: all 0.2s ease 0s;
+}
+
+@media screen and (max-width: 1500px) {
+  .changeDownFirst {
+    width: 25px;
+    height: 46px;
+    margin-top: 24px;
+    font-size: 10px;
+    float: right;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .changeDownFirst {
+    width: 50px;
+    height: 71px;
+    margin-top: 55px;
+    font-size: 15px;
+    float: right;
+  }
+}
+
+@media screen and (max-width: 610px) {
+  .changeDownFirst {
+    width: 50px;
+    height: 56px;
+    margin-top: 43px;
+    font-size: 15px;
+    float: right;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .changeDownFirst {
+    width: 40px;
+    height: 46px;
+    margin-top: 25px;
+    font-size: 10px;
+    float: right;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .changeDownFirst {
+    width: 30px;
+    height: 44px;
+    margin-top: 20px;
+    font-size: 10px;
+    float: right;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .changeDownFirst {
+    width: 20px;
+    height: 21px;
+    font-size: 10px;
+    float: right;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .changeDownFirst {
+    width: 30px;
+    height: 43px;
+    font-size: 10px;
+    float: right;
+  }
+}
+
+.changeDownFirst:hover {
+    background-color: #01A9DB;
+}
+
 .changeUp {
   font-family: 'Athiti', 'Oxygen';
   font-size: 12px;
