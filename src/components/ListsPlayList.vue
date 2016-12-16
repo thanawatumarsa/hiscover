@@ -7,9 +7,9 @@
         </div>
       </div>
     <button type="button" class="del" @click="deleteplaylist(index)" name="button">x</button>
-    <div class="namePL">
-      {{ playlist[index].snippet.title }}<br>
-    </div>
+      <div class="namePL">
+        {{ playlist[index].snippet.title }}<br>
+      </div>
     </div>
     <div class="cardPlaylist fade-in one color2" v-else>
       <div class="imgPL">

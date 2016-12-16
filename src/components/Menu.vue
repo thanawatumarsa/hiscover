@@ -4,9 +4,9 @@
     Categories
   </div><hr>
   <div id="menu">
-    <button class="button" @click="cateSearch(' cover')">Cover</button>
     <button class="button" @click="cateSearch(' guitar')">Guitar</button>
     <button class="button" @click="cateSearch(' drum')">Drum</button>
+    <button class="button" @click="cateSearch(' bass')">Bass</button>
   </div>
 </div>
 </template>

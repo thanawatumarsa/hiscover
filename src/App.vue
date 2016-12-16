@@ -12,14 +12,13 @@
       <menu :cate-search = "cateSearch"></menu>
     </div>
     <div class="column is-6 is-offset-0">
-      <content :toggleshow = "toggleShow" :show = "show" :showplay = "showPlay" :list = "list" :playlist = "playLists" :select = "select" :video = "VideoId" :end = "end" :pl = "addPlayList" :showplaylist = "showPlaylist" :showpl = "showpl" :end = "end"></content>
+      <content :toggleshow = "toggleShow" :show = "show" :showplay = "showPlay" :list = "list" :playlist = "playLists" :select = "select" :video = "VideoId" :end = "end" :pl = "addPlayList" :showplaylist = "showPlaylist" :showpl = "showpl"></content>
     </div>
     <div class="column is-2 is-offset-0">
-      <play-list :toggleshowplay = "toggleShowPlay" :select = "select" :toggleshow = "toggleShow" :playlist = "playLists" :deleteplaylist = "deletePlayList"></play-list>
+      <play-list :select = "select" :playlist = "playLists" :deleteplaylist = "deletePlayList"></play-list>
     </div>
   </div>
 </template>
-
 
 <script>
 import Vue from 'vue'
@@ -39,7 +38,7 @@ export default {
       playLists: [],
       VideoId: '',
       defaultPL: 'cover',
-      keyTemp: '',
+      keysTemp: '',
       showPlay: true,
       showPlaylist: [],
       chkSelect: 0
@@ -47,6 +46,7 @@ export default {
   },
   ready () {
     this.search(this.defaultPL)
+    console.log(this.playLists)
   },
   components: {
     ToolBar,
@@ -64,9 +64,9 @@ export default {
       let vm = this
       var maxlist = vm.list.length
       vm.list.splice(0, maxlist)
-      this.$http.get('/search?keyword=' + keyword + ' cover').then(function (res) {
+      this.$http.get('http://localhost:3000/search?keyword=' + keyword + ' cover').then(function (res) {
         vm.checkLists = JSON.parse(res.body).items
-        this.keyTemp = keyword
+        this.keysTemp = keyword
         this.show = true
         for (var i = 0; i < vm.checkLists.length; i++) {
           if (vm.checkLists[i].id.kind === 'youtube#video') {
@@ -81,10 +81,20 @@ export default {
     },
     cateSearch (keysearch) {
       let vm = this
-      this.$http.get('/search?keyword=' + this.keyTemp + keysearch).then(function (res) {
-        vm.list = JSON.parse(res.body).items
+      var maxlist = vm.list.length
+      vm.list.splice(0, maxlist)
+      this.$http.get('http://localhost:3000/search?keyword=' + this.keysTemp + keysearch).then(function (res) {
+        vm.checkLists = JSON.parse(res.body).items
         this.show = true
+        for (var i = 0; i < vm.checkLists.length; i++) {
+          if (vm.checkLists[i].id.kind === 'youtube#video') {
+            this.pushList = vm.checkLists[i]
+            this.list.push(this.pushList)
+          }
+        }
       })
+      var maxChkLists = vm.checkLists.length
+      vm.checkLists.splice(0, maxChkLists)
     },
     select (Vid) {
       let vm = this
@@ -215,7 +225,6 @@ body {
   width: 100%;
   height: 100%;
   margin-top: 10px;
-  padding-bottom: 0px;
   border-radius: 3px;
 }
 
@@ -334,7 +343,6 @@ input[type=text]{
 .video-container iframe {
 	position:absolute;
   margin-left: -5%;
-	top:0;
 	left:5%;
 	width:100%;
 	height:100%;
@@ -348,6 +356,14 @@ input[type=text]{
   overflow: hidden;
   transition: all 0.2s ease 0s;
   border: 1.2px solid #E6E6E6;
+}
+
+.cardClick {
+  background-color: #ffffff;
+  width: 92%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  overflow: hidden;
 }
 
 .cardContent {
@@ -473,7 +489,7 @@ input[type=text]{
 @media screen and (max-width: 450px) {
   .nameLink {
     font-size: 70%;
-    margin-top: -10px;
+    margin-top: 10px;
     margin-left: 5px;
   }
 }
@@ -481,7 +497,7 @@ input[type=text]{
 @media screen and (max-width: 401px) {
   .nameLink {
     font-size: 60%;
-    margin-top: -10px;
+    margin-top: 10px;
     margin-left: 5px;
   }
 }
@@ -501,14 +517,6 @@ input[type=text]{
 }
 
 @media screen and (max-width: 1500px) {
-  .namePL {
-    font-size: 70%;
-    margin-top: 10px;
-    margin-left: 5px;
-  }
-}
-
-@media screen and (max-width: 650px) {
   .namePL {
     font-size: 100%;
     margin-top: 10px;
@@ -560,15 +568,22 @@ input[type=text]{
 .addPlaylist {
   width: 50px;
   height: 50px;
-  top: 60px;
+  margin-top: -110px;
   margin-right: 10px;
   float: right;
   position: relative;
 }
 
+@media screen and (max-width: 980px) {
+  .addPlaylist {
+    margin-top: -80px;
+    margin-left: 10px;
+  }
+}
+
 @media screen and (max-width: 500px) {
   .addPlaylist {
-    margin-top: -20px;
+    margin-top: -60px;
     margin-left: 10px;
   }
 }
@@ -610,9 +625,18 @@ input[type=text]{
 
 @media screen and (max-width: 768px) {
   .addButt {
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+    float: right;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .addButt {
     width: 20px;
     height: 20px;
-    font-size: 10px;
+    font-size: 10menupx;
     float: right;
   }
 }
