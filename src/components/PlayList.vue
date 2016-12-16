@@ -9,7 +9,7 @@
     </div>
   </div>
   <div v-for="play in playlist">
-    <lists-play-list :playlist = "playlist" :deleteplaylist = 'deleteplaylist' :index ="$index" :select = "select"></lists-play-list>
+    <lists-play-list :playlist = "playlist" :deleteplaylist = 'deleteplaylist' :index ="$index" :select = "select" :changeplaylistup = "changeplaylistup" :changeplaylistdown = "changeplaylistdown"></lists-play-list>
 </div>
 </div>
 </template>
@@ -18,7 +18,7 @@
 import ListsPlayList from '../components/ListsPlayList'
 
 export default {
-  props: ['playlist', 'deleteplaylist', 'select'],
+  props: ['playlist', 'deleteplaylist', 'select', 'changeplaylistup', 'changeplaylistdown'],
   data () {
     return {}
   },

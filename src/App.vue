@@ -15,7 +15,7 @@
       <content :toggleshow = "toggleShow" :show = "show" :showplay = "showPlay" :list = "list" :playlist = "playLists" :select = "select" :video = "VideoId" :end = "end" :pl = "addPlayList" :showplaylist = "showPlaylist" :showpl = "showpl"></content>
     </div>
     <div class="column is-2 is-offset-0">
-      <play-list :select = "select" :playlist = "playLists" :deleteplaylist = "deletePlayList"></play-list>
+      <play-list :select = "select" :playlist = "playLists" :deleteplaylist = "deletePlayList" :changeplaylistup = "changePlaylistUP" :changeplaylistdown = "changePlaylistDown"></play-list>
     </div>
   </div>
 </template>
@@ -46,7 +46,6 @@ export default {
   },
   ready () {
     this.search(this.defaultPL)
-    console.log(this.playLists)
   },
   components: {
     ToolBar,
@@ -64,7 +63,7 @@ export default {
       let vm = this
       var maxlist = vm.list.length
       vm.list.splice(0, maxlist)
-      this.$http.get('/search?keyword=' + keyword + ' cover').then(function (res) {
+      this.$http.get('http://localhost:3000/search?keyword=' + keyword + ' cover').then(function (res) {
         vm.checkLists = JSON.parse(res.body).items
         this.keysTemp = keyword
         this.show = true
@@ -77,13 +76,12 @@ export default {
       })
       var maxChkLists = vm.checkLists.length
       vm.checkLists.splice(0, maxChkLists)
-      console.log(this.list)
     },
     cateSearch (keysearch) {
       let vm = this
       var maxlist = vm.list.length
       vm.list.splice(0, maxlist)
-      this.$http.get('/search?keyword=' + this.keysTemp + keysearch).then(function (res) {
+      this.$http.get('http://localhost:3000/search?keyword=' + this.keysTemp + keysearch).then(function (res) {
         vm.checkLists = JSON.parse(res.body).items
         this.show = true
         for (var i = 0; i < vm.checkLists.length; i++) {
@@ -116,6 +114,34 @@ export default {
     selectPlaylist (id) {
       let source = id
       this.VideoId = source
+    },
+    changePlaylistUP (play, index) {
+      let vm = this
+      let source = play.id.videoId
+      var temp = index - 1
+      for (var i = 0; i < vm.playLists.length; i++) {
+        if (vm.playLists[i].id.videoId === source) {
+          this.deletePlayList(i)
+          vm.playLists.splice(temp, 0, play)
+        }
+      }
+      if (index === 1) {
+        this.VideoId = source
+      }
+    },
+    changePlaylistDown (play, index) {
+      let vm = this
+      let source = play.id.videoId
+      var temp = index + 1
+      for (var i = 0; i < vm.playLists.length; i++) {
+        if (vm.playLists[i].id.videoId === source) {
+          this.deletePlayList(i)
+          vm.playLists.splice(temp, 0, play)
+        }
+      }
+      if (index === 0) {
+        this.VideoId = vm.playLists[0].id.videoId
+      }
     },
     addPlayList (pl) {
       var check = 0
@@ -295,7 +321,7 @@ body {
 
 @media screen and (max-width: 980px) {
   .playList {
-    height: 50vh;
+    height: 40vh;
   }
 }
 
@@ -319,7 +345,7 @@ body {
 
 @media screen and (max-width: 980px) {
   #playlists {
-    height: 30vh;
+    height: 40vh;
   }
 }
 
@@ -383,31 +409,59 @@ input[type=text]{
 .cardPlaylist {
   width: 98%;
   margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.contentPlaylist {
+  width: 85%;
   background-color: #ffffff;
-  overflow: hidden;
   border: 1.2px solid #E6E6E6;
+  float: left;
+  margin-top: 5px;
 }
 
-.fade-in {
-  opacity:0;  /* make things invisible upon start */
-	-webkit-animation:fadeIn ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
-	-moz-animation:fadeIn ease-in 1;
-	animation:fadeIn ease-in 1;
-
-	-webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
-	-moz-animation-fill-mode:forwards;
-	animation-fill-mode:forwards;
-
-	-webkit-animation-duration:0.3s;
-	-moz-animation-duration:0.3s;
-	animation-duration:0.3s;
+@media screen and (max-width: 1300px) {
+  .contentPlaylist {
+    width: 82%;
+  }
 }
 
-.fade-in.one {
-  -webkit-animation-delay: 0.1s;
-  -moz-animation-delay: 0.1s;
-  animation-delay: 0.1s;
+@media screen and (max-width: 770px) {
+  .contentPlaylist {
+    width: 91%;
+  }
 }
+
+@media screen and (max-width: 650px) {
+  .contentPlaylist {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 610px) {
+  .contentPlaylist {
+    width: 88%;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .contentPlaylist {
+    width: 86%;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .contentPlaylist {
+    width: 86%;
+  }
+}
+
+.changePositionPL {
+  float: right;
+  height: 100%;
+  margin-top: 5px;
+}
+
 
 .color1 {
   border: 2px solid #58D3F7;
@@ -518,7 +572,15 @@ input[type=text]{
 
 @media screen and (max-width: 1500px) {
   .namePL {
-    font-size: 100%;
+    font-size: 70%;
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .namePL {
+    font-size: 70%;
     margin-top: 10px;
     margin-left: 5px;
   }
@@ -553,7 +615,6 @@ input[type=text]{
   margin-right: 5px;
   margin-bottom: 5px;
   border: 0;
-  z-index: -1;
   text-align: center;
   float: right;
   position: relative;
@@ -605,6 +666,177 @@ input[type=text]{
     background-color: #00ace6;
 }
 
+.changeUp {
+  font-family: 'Athiti', 'Oxygen';
+  font-size: 12px;
+  display: inline-block;
+  color: white;
+  width: 25px;
+  height: 39px;
+  margin-top: 5px;
+  margin-right: 5px;
+  border-radius: 5%;
+  background-color: #58D3F7;
+  float: right;
+  border: 0;
+  margin-top: 4%;
+  margin-left: 10%;
+  transition: all 0.2s ease 0s;
+}
+
+@media screen and (max-width: 1500px) {
+  .changeUp {
+    width: 25px;
+    height: 45px;
+    font-size: 10px;
+    float: right;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .changeUp {
+    width: 50px;
+    height: 70px;
+    font-size: 15px;
+    float: right;
+  }
+}
+
+@media screen and (max-width: 610px) {
+  .changeUp {
+    width: 50px;
+    height: 55px;
+    font-size: 15px;
+    float: right;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .changeUp {
+    width: 40px;
+    height: 45px;
+    font-size: 10px;
+    float: right;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .changeUp {
+    width: 30px;
+    height: 43px;
+    font-size: 10px;
+    float: right;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .changeUp {
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+    float: right;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .changeUp {
+    width: 30px;
+    height: 42px;
+    font-size: 10px;
+    float: right;
+  }
+}
+
+.changeUp:hover {
+    background-color: #01A9DB;
+}
+
+.changeDown {
+  font-family: 'Athiti', 'Oxygen';
+  font-size: 12px;
+  display: inline-block;
+  color: white;
+  width: 25px;
+  height: 39px;
+  margin-top:5px;
+  margin-right: 5px;
+  border-radius: 5%;
+  background-color: #58D3F7;
+  float: right;
+  border: 0;
+  margin-top: 4%;
+  margin-left: 10%;
+  transition: all 0.2s ease 0s;
+}
+
+@media screen and (max-width: 1500px) {
+  .changeDown {
+    width: 25px;
+    height: 45px;
+    font-size: 10px;
+    float: right;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .changeDown {
+    width: 50px;
+    height: 70px;
+    font-size: 15px;
+    float: right;
+  }
+}
+
+@media screen and (max-width: 610px) {
+  .changeDown {
+    width: 50px;
+    height: 55px;
+    font-size: 15px;
+    float: right;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .changeDown {
+    width: 40px;
+    height: 45px;
+    font-size: 10px;
+    float: right;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .changeDown {
+    width: 30px;
+    height: 43px;
+    font-size: 10px;
+    float: right;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .changeDown {
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+    float: right;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .changeDown {
+    width: 30px;
+    height: 42px;
+    font-size: 10px;
+    float: right;
+  }
+}
+
+.changeDown:hover {
+    background-color: #01A9DB;
+}
+
+
 .addButt {
   font-family: 'Athiti', 'Oxygen';
   font-size: 25px;
@@ -636,7 +868,7 @@ input[type=text]{
   .addButt {
     width: 20px;
     height: 20px;
-    font-size: 10menupx;
+    font-size: 10px;
     float: right;
   }
 }
