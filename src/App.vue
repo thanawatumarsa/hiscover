@@ -111,10 +111,6 @@ export default {
       this.showPlay = false
       this.chkSelect = 0
     },
-    selectPlaylist (id) {
-      let source = id
-      this.VideoId = source
-    },
     changePlaylistUP (play, index) {
       let vm = this
       let source = play.id.videoId
